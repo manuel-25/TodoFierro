@@ -1,0 +1,19 @@
+{
+  "name": "todo-fierro",
+  "version": "1.0.0",
+  "description": "Ecommerce de venta de productos de decoracion hechos con fierro",
+  "main": "server.js",
+  "type": "module",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "start": "node ./src/server.js --mode production",
+    "dev": "nodemon ./src/server.js --mode development"
+  },
+  "author": "Manuel-25",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
