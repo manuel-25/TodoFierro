@@ -1,15 +1,22 @@
 import express from 'express'
+import router from './routes/index.js'
+import logger from 'morgan'
+import methodOverride from 'method-override'
 
 const app = express()
 const PORT = process.env.PORT || 3000
-const router = express.Router()
-
-app.use('/', router)
 
 app.listen(PORT, () => {
     console.log('El servidor esta corriendo en el puerto: ', PORT)
 })
 
-router.get('/', (req, res) => {
-    res.send('Hola mundoo')
-})
+//Template engine
+app.set('view engine', 'ejs')
+
+app.use('/public', express.static('public'))
+app.use(express.json())
+app.use(express.urlencoded({extended:true}))
+app.use('/', router)
+
+app.use(logger('dev'))
+app.use(methodOverride('_method'))
