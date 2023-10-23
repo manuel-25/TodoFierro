@@ -1,9 +1,12 @@
 import { Router } from "express";
+import viewController from "../../controllers/viewController.js";
+
+const {
+    renderIndex
+} = viewController
 
 const router = Router()
 
-router.get('/', (req, res, next) => {
-    res.send('Hola mundoo che')
-})
+router.get('/', renderIndex)
 
 export default router
