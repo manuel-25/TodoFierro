@@ -1,0 +1,8 @@
+@import "root.css";
+
+main .content {
+    display: flex;
+    justify-content: center;
+    margin-top: 20%;
+    color: var(--gray-color);
+}
