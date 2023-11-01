@@ -114,6 +114,7 @@ header .middle, header .right ul li:not(:nth-child(2)) {
 }
 
 /* RESPONSIVE MENU */ 
+
 .mobile-menu {
     position: fixed;
     top: 0;
@@ -125,6 +126,34 @@ header .middle, header .right ul li:not(:nth-child(2)) {
     z-index: 1000;
     display: flex;
     flex-direction: row;
+
+    transform: translate3d(-100%, 0, 0);
+    visibility: hidden;
+    transition: transform .3s visibility .3s;
+}
+
+.showmenu .mobile-menu {
+    transform: translate3d(0, 0, 0);
+    visibility: visible;
+}
+
+.mobile-menu .menu-list ul ul {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateX(360px);
+    transition: transform .3s visibility .3s opacity .3s;
+}
+
+.mobile-menu .show > ul {
+    transform: translateX(-360px);
+}
+
+.mobile-menu .show .expand ul {
+    opacity: 1;
+    visibility: visible;
 }
 
 .mobile-menu .mini {
@@ -226,6 +255,7 @@ header .middle, header .right ul li:not(:nth-child(2)) {
     display: flex;
     flex-direction: column;
     height: 100%;
+    overflow: hidden;
 }
 
 .mobile-menu .search {
@@ -279,8 +309,49 @@ header .middle, header .right ul li:not(:nth-child(2)) {
     color: var(--gray-color);
 }
 
+.mobile-menu .menu-list li li:not(.back) a{
+    color: var(--gray-color);
+    transition: color .3s;
+}
+
+.mobile-menu .menu-list li li:not(.back) a:hover {
+    color: var(--dark-color);
+}
+
+.mobile-menu .menu-list li.back {
+    border-bottom: 1px solid var(--gray-color);
+}
+
+.mobile-menu .copyright {
+    font-size: 12px;
+    color: var(--gray-color);
+    line-height: 1.2;
+    margin-top: auto;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--dark-color);
+    visibility: hidden;
+    z-index: 999;
+}
+
+.showmenu .overlay {
+    opacity: .5;
+    visibility: visible;
+}
+
+
 @media only screen and (min-width: 992px) {
     header .trigger {
         display: none;
+    }
+
+    header .middle, header .right ul li:not(:nth-child(2)) {
+        display: block;
     }
 }
