@@ -1,8 +1,92 @@
 @import "root.css";
 
+* {
+    margin: 0;
+    padding: 0;
+}
+
+*,::before,::after {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Barlow Semi Condensed', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.8;
+    color: var(--dark-color);
+    background-color: var(--white-color);
+}
+
 main .content {
     display: flex;
     justify-content: center;
-    margin-top: 20%;
+    align-items: center;
     color: var(--gray-color);
+    text-align: center;
+}
+
+/* Banner */
+
+.slider {
+    width: 800px;
+    height: 500px;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.slides {
+    width: 500%;
+    height: 500px;
+    display: flex;
+    /*flex-direction: row;*/
+}
+
+.slides input {
+    display: none;
+}
+
+.slides .slide {
+    width: 20%;
+    transition: 2s;
+}
+
+.slides .slide img {
+    width: 800px;
+    height: 500px;
+    object-fit: cover;
+}
+
+/* Banner manual navigation */
+.navigation-manual {
+    position: absolute;
+    width: 800px;
+    margin-top: -40px;
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+}
+
+.manual-btn {
+    border: 2px solid var(--gray-color);
+    padding: 5px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.manual-btn:hover {
+    background: var(--gray-color);
+}
+
+#radio1:checked ~ .first {
+    margin-left: 0;
+}
+
+#radio2:checked ~ .first {
+    margin-left: -20%;
+}
+
+#radio3:checked ~ .first {
+    margin-left:-40%;
 }
