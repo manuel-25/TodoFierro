@@ -127,8 +127,9 @@ main .content {
 .category-rows {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-around;
     flex-wrap: wrap;
+    width: 90vw;
     align-items: center;
     padding: 0 40px;
     gap: 10px;

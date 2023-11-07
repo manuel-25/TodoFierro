@@ -4,6 +4,7 @@ import logger from 'morgan'
 import methodOverride from 'method-override'
 import { __dirname, __filename } from './utils.js'
 import expressLayouts from 'express-ejs-layouts'
+import config from './config/config.js'
 
 const app = express()
 const PORT = process.env.PORT || 3000
@@ -27,3 +28,6 @@ app.use('/', router)
 
 app.use(logger('dev'))
 app.use(methodOverride('_method'))
+
+//Database
+config.connectDB()
