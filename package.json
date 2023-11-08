@@ -9,7 +9,7 @@
   },
   "scripts": {
     "start": "node ./src/app.js --mode production",
-    "dev": "NODE_ENV=development nodemon ./src/app.js --mode development"
+    "dev": "nodemon ./src/app.js --mode development"
   },
   "author": "Manuel-25",
   "license": "ISC",
