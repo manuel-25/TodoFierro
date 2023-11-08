@@ -1,9 +1,13 @@
-import ProductManagerDao from "../dao/Mongo/ProductManager.js"
+import { productService } from "../Service/index.js"
 
 class ProductController {
     async getProducts(req, res, next) {
         try {
-            console.log(ProductManagerDao.getProducts())
+            const results = await productService.getAll()
+            return res.status(200).send({
+                success: true,
+                data: results
+            })
         } catch (err) {
             console.log(err)
         }
@@ -11,7 +15,7 @@ class ProductController {
 
     async createProduct(req, res, next) {
         try {
-            const product = await ProductManagerDao.createProduct(req.body)
+            const product = await productService.create(req.body)
             console.log(product)
             return res.status(201).send({
                 success: true,
@@ -24,4 +28,6 @@ class ProductController {
     }
 }
 
-export default ProductController
+const productController = new ProductController()
+
+export default productController
