@@ -25,7 +25,7 @@ a {
 .footer-container a {
     color: var(--white-color);
     text-decoration: none;
-    font-weight: bold;
+    font-weight: 400;
 }
 
 .left .logo {
@@ -50,7 +50,7 @@ a {
 }
 
 .right .socials a {
-    color: var(--white-color);
+    color: var(--gray-color);
     font-size: 24px;
 }
 
@@ -64,10 +64,13 @@ a {
     margin: 5px 0;
 }
 
+.right .contact-info p i {
+    color: var(--gray-color);
+}
+
 .right .contact-info a {
     color: var(--white-color);
     text-decoration: none;
-    font-weight: bold;
 }
 
 .notification {

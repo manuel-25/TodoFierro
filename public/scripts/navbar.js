@@ -7,7 +7,6 @@ menuTrigger.addEventListener('click', function() {
 })
 
 closeTrigger.addEventListener('click', function() {
-    console.log('click')
     giveClass.classList.remove('showmenu')
 })
 
