@@ -1,6 +1,5 @@
 import { model, Schema } from 'mongoose'
-import mongoosePaginate from 'mongoose-paginate'
-import config from '../../../config/config.js'
+import mongoosePaginate from 'mongoose-paginate-v2'
 
 const collection = 'Products'
 const productSchema = new Schema({
@@ -16,7 +15,7 @@ const productSchema = new Schema({
     stock: { type: Number, default: 0 }
 })
 
-const ProductModel = model(collection, productSchema)
 productSchema.plugin(mongoosePaginate)
 
+const ProductModel = model(collection, productSchema)
 export default ProductModel

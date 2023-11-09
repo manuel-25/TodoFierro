@@ -9,6 +9,10 @@ class ProductManagerDao {
         return await ProductModel.find({})
     }
 
+    async paginate(query, config) {
+        return await ProductModel.paginate(query, config)
+    }
+
     async getById(productId) {
         return await ProductModel.findById(productId)
     }
