@@ -128,11 +128,10 @@ main .content {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    width: 80vw;
     flex-wrap: wrap;
-    width: 70vw;
+    width: 85vw;
     align-items: center;
-    padding: 0 40px;
+    
 }
 
 .block-overlay {
@@ -143,6 +142,7 @@ main .content {
     margin-bottom: 20px;
     position: relative;
     overflow: hidden;
+    border-radius: 5px;
 }
 
 .block-overlay img {
@@ -151,6 +151,7 @@ main .content {
     max-height: 300px;
     object-fit: cover;
     border-radius: 5px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .block-overlay a {
