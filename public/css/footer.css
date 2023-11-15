@@ -1,10 +1,5 @@
 @import "root.css";
 
-a {
-    text-decoration: none;
-    -webkit-tap-highlight-color: transparent;
-}
-
 .footer-container {
     display: flex;
     flex-direction: column;

@@ -3,17 +3,18 @@ import mongoosePaginate from 'mongoose-paginate-v2'
 
 const collection = 'Products'
 const productSchema = new Schema({
-    nombre: { type: String, required: true },
-    descripcion: { type: String, default: '' },
-    precio: { type: Number, default: null },
+    name: { type: String, required: true },
+    description: { type: String, default: '' },
+    price: { type: Number, default: null },
     thumbnails: [{ type: String }],
-    categoria: { type: String, required: true },
+    category: { type: String, required: true },
     status: { type: Boolean, default: true },
-    color: { type: String },
-    material: { type: String, default: 'Hierro' },
-    fecha: { type: Date },
+    color: { type: [String], default: ['Blanco', 'Negro'] },
+    material: { type: [String], default: ['Hierro','Caño'] },
+    date: { type: Date, default: Date.now },
     stock: { type: Number, default: 0 }
 })
+
 
 productSchema.plugin(mongoosePaginate)
 

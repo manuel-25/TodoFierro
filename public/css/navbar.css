@@ -25,11 +25,11 @@ a {
 }
 
 ul { list-style: none;}
-h1,h2,h3,h4 {font-weight: 600; line-height: normal;}
+/*h1,h2,h3,h4 {font-weight: 600; line-height: normal;}
 h1 {font-size: 2.5em;}
 h2 {font-size: 2em;}
 h3 {font-size: 1.5em;}
-h4 {font-size: 1em;}
+h4 {font-size: 1em;}*/
 
 .nav-container {
     max-width: 1200px;
@@ -338,7 +338,7 @@ header .middle, header .right ul li:not(:nth-child(2)) {
 }
 
 
-@media only screen and (min-width: 992px) {
+@media only screen and (min-width: 767px) {
     header .trigger {
         display: none;
     }
