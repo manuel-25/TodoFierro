@@ -13,8 +13,8 @@
 
 .breadcrumb-wrapper h1,
 .breadcrumb-wrapper h2 {
-    padding-right: 15px;
-    padding-left: 15px;
+    padding-right: 30px;
+    padding-left: 30px;
     font-size: 24px;
     font-weight: 600;
     color: var(--white-color);
@@ -52,6 +52,10 @@
     text-align: center;
     position: relative;
     overflow: hidden;
+}
+
+.product-card:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .image-container {

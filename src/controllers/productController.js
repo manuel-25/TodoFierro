@@ -3,7 +3,7 @@ import { productService } from "../Service/index.js"
 class ProductController {
     async getProducts(req, res, next) {
       try {
-        const limit = !isNaN(parseInt(req.query.limit)) ? parseInt(req.query.limit) : 3
+        const limit = !isNaN(parseInt(req.query.limit)) ? parseInt(req.query.limit) : 6
         const page = !isNaN(parseInt(req.query.page)) ? parseInt(req.query.page) : 1
         const searchTerm = req.query.name || ''
     
@@ -39,25 +39,45 @@ class ProductController {
       }
   }
 
-    async createProduct(req, res, next) {
-      try {
-        const productData = req.body
-        const product = await productService.create(productData)
-        console.log(product)
-        if(!product) {
-          return res.status(404).json({
-            success: false,
-            message: 'Product not found',
-          })
-        }
-        return res.status(201).send({
-          success: true,
-          message: 'Created!',
-          data: product
+  async getProduct(req, res, next) {
+    try {
+      const productId = req.params.pid
+      const product = await productService.getById(productId)
+
+      if (!product) {
+        return res.status(404).send({
+          status: 404,
+          response: `Failed to get product ${productId}`
         })
-      } catch (err) {
-          console.error(err)
       }
+      return res.status(200).send({
+        status: 200,
+        response: product
+      })
+    } catch (error) {
+      next(error)
+    }
+  }
+
+  async createProduct(req, res, next) {
+    try {
+      const productData = req.body
+      const product = await productService.create(productData)
+      console.log(product)
+      if(!product) {
+        return res.status(404).json({
+          success: false,
+          message: 'Product not found',
+        })
+      }
+      return res.status(201).send({
+        success: true,
+        message: 'Created!',
+        data: product
+      })
+    } catch (err) {
+        console.error(err)
+    }
   }
 }
 

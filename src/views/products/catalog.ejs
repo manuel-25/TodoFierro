@@ -8,13 +8,13 @@
             <%if(data?.docs.length > 0) { %>
                 <% data.docs.forEach(product => { %>
                     <div class="product-card">
-                        <a href="/">
+                        <a href="/detalle/<%= product.id %>">
                             <div class="image-container">
                                 <img src="<%= product.thumbnails[0] %>" alt="Imagen del Producto">
                             </div>
                         </a>
                         <div class="text-container">
-                            <a href="/">
+                            <a href="/detalle/<%= product.id %>">
                                 <h3><%= product.name %></h3>
                             </a>
                         </div>
@@ -46,6 +46,7 @@
                 <li><a href="/catalogo?name=espejos&category=Espejos">Espejos</a></li>
                 <li><a href="/catalogo?name=estantes&category=Estantes">Estantes</a></li>
                 <li><a href="/catalogo?name=hierro&category=Hierro">Hierro</a></li>
+                <li><a href="/catalogo?name=Otros&category=Otros">Otros</a></li>
             </ul>
         </div>
     </div>

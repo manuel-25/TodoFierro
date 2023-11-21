@@ -1,0 +1,45 @@
+<div class="container">
+    <div class="product-detail">
+        <div class="gallery-carrousel">
+            <div class="main-image">
+                <img src="<%= data.thumbnails[0]  %>" alt="Imagen del Producto">
+            </div>
+            <div class="thumbnails">
+                <% data.thumbnails.forEach(image => { %>
+                    <img src="<%= image  %>" alt="Thumbnail del Producto">
+                <% }) %>
+            </div>
+        </div>
+        <div class="detail-column">
+            <div class="title-row">
+                <h2> <%= data.name  %> </h2>
+            </div>
+            <div class="input-row">
+                <div class="form-group">
+                    <label for="colorSelect">Color:</label>
+                    <select id="colorSelect" name="color">
+                        <% data.color.forEach(color => { %>
+                            <option value="<%= color %>"><%= color %></option>
+                        <% }) %>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="materialSelect">Material:</label>
+                    <select id="materialSelect" name="material">
+                        <% data.material.forEach(material => { %>
+                            <option value="<%= material %>"><%= material %></option>
+                        <% }) %>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="quantityInput">Cantidad:</label>
+                    <input type="number" id="quantityInput" name="quantity" min="1" value="1">
+                </div>
+                <div class="form-group">
+                    <button type="submit">Consultar</button>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</div>

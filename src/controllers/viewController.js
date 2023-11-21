@@ -1,3 +1,5 @@
+
+
 class viewController {
     async renderIndex(req, res, next) {
         try {
@@ -41,6 +43,27 @@ class viewController {
             next(err)
         }
     }
+
+    async renderDetail(req, res, next) {
+        try {
+            const pid = req.params.pid
+            let data
+
+            const response = await fetch(`http://localhost:3000/api/products/${pid}`)
+            if (response.status === 200) {
+                data = await response.json()
+            }
+
+            return res.render('products/productDetail', {
+                title: 'Detalle',
+                style: 'productDetail.css',
+                script: 'productDetail.js',
+                data: data.response
+            })
+        } catch (error) {
+            next(error)
+        }
+    }    
 }
 
 export default new viewController()
