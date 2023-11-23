@@ -12,7 +12,8 @@ const productSchema = new Schema({
     color: { type: [String], default: ['Blanco', 'Negro'] },
     material: { type: [String], default: ['Hierro','Caño'] },
     date: { type: Date, default: Date.now },
-    stock: { type: Number, default: 0 }
+    stock: { type: Number, default: 0 },
+    isFeatured: { type: Boolean, default: false }
 })
 
 

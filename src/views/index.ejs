@@ -36,6 +36,7 @@
             </div>
         </div>
 
+        <!-- CATEGORIES -->
         <div class="category-rows">
             <div class="block-overlay">
                 <img src="/public/images/mesas.jpg" alt="Mesas">
@@ -48,6 +49,37 @@
             <div class="block-overlay">
                 <img src="/public/images/estantes01.jpg" alt="Estantes">
                 <a href="/catalogo?name=estantes&category=Estantes"><h4>Estantes</h4></a>
+            </div>
+        </div>
+
+        <!-- SLIDER CARDS -->
+        <div class="slider-container">
+            <div class="slider-list">
+                <!-- Agregamos un contenedor adicional para las tarjetas -->
+                <div class="cards-wrapper">
+                    <% if(data?.docs.length > 0) { %>
+                        <% data.docs.forEach(product => { %>
+                            <div class="product-card">
+                                <a href="/detalle/<%= product.id %>">
+                                    <div class="image-container">
+                                        <img src="<%= product.thumbnails[0] %>" alt="Imagen del Producto">
+                                    </div>
+                                </a>
+                                <div class="text-container">
+                                    <a href="/detalle/<%= product.id %>">
+                                        <h3><%= product.name %></h3>
+                                    </a>
+                                </div>
+                            </div>
+                        <% }) %>
+                    <% } else { }%>
+                </div>
+            </div>
+
+            <!-- Agregamos botones de navegación -->
+            <div class="navigation">
+                <button class="prev-btn">&lt;</button>
+                <button class="next-btn">&gt;</button>
             </div>
         </div>
     </div>

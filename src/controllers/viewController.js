@@ -3,10 +3,22 @@
 class viewController {
     async renderIndex(req, res, next) {
         try {
+            let data
+
+            const url = new URL('http://localhost:3000/api/products')
+            url.searchParams.append('limit', 8)
+            url.searchParams.append('name', 'mesa')
+            const response = await fetch(url)
+
+            if (response.status === 200) {
+                data = await response.json()
+            }
+
             return res.render('index', {
                 title: 'Home',
                 style: 'index.css',
-                script: 'index.js'
+                script: 'index.js',
+                data: data?.response
             })
         } catch (err) {
             next(err)
