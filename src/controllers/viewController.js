@@ -7,7 +7,7 @@ class viewController {
 
             const url = new URL('http://localhost:3000/api/products')
             url.searchParams.append('limit', 8)
-            url.searchParams.append('name', 'hierro')
+            url.searchParams.append('name', 'mesa')
             const response = await fetch(url)
 
             if (response.status === 200) {
