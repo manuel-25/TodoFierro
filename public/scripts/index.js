@@ -1,3 +1,4 @@
+//BANNER SLIDER
 window.onload = function() {
     const radios = document.querySelectorAll('input[name="radio-btn"]')
     const labels = document.querySelectorAll('.manual-btn')
@@ -32,3 +33,31 @@ window.onload = function() {
         })
     })
 }
+
+// PRODUCT SLIDER
+document.addEventListener('DOMContentLoaded', function () {
+    const productContainers = document.querySelector('.cards-wrapper');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+
+    const cardWidth = 250 + 40;
+    const cardsPerPage = Math.floor(productContainers.offsetWidth / cardWidth);
+    const totalCards = document.querySelectorAll('.product-card').length;
+
+    let currentIndex = 0;
+
+    prevBtn.addEventListener('click', function () {
+        currentIndex = Math.max(0, currentIndex - cardsPerPage);
+        moveCards();
+    });
+
+    nextBtn.addEventListener('click', function () {
+        currentIndex = Math.min(currentIndex + cardsPerPage, totalCards - cardsPerPage);
+        moveCards();
+    });
+
+    function moveCards() {
+        const translateXValue = -currentIndex * cardWidth + 'px';
+        productContainers.style.transform = 'translateX(' + translateXValue + ')';
+    }
+});

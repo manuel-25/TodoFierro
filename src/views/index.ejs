@@ -54,8 +54,7 @@
 
         <!-- SLIDER CARDS -->
         <div class="slider-container">
-            <div class="slider-list">
-                <!-- Agregamos un contenedor adicional para las tarjetas -->
+                <h2 class="slider-title">Destacados</h2>
                 <div class="cards-wrapper">
                     <% if(data?.docs.length > 0) { %>
                         <% data.docs.forEach(product => { %>
@@ -74,12 +73,9 @@
                         <% }) %>
                     <% } else { }%>
                 </div>
-            </div>
-
-            <!-- Agregamos botones de navegación -->
             <div class="navigation">
-                <button class="prev-btn">&lt;</button>
-                <button class="next-btn">&gt;</button>
+                <button class="prev-btn" id="prevBtn"><i class="fas fa-chevron-left"></i></button>
+                <button class="next-btn" id="nextBtn"><i class="fas fa-chevron-right"></i></button>
             </div>
         </div>
     </div>

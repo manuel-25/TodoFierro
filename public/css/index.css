@@ -129,7 +129,8 @@ main .content {
     flex-direction: row;
     justify-content: space-between;
     flex-wrap: wrap;
-    width: 1160px;
+    width: 80vw;
+    max-width: 1160px;
     align-items: center;
     
 }
@@ -181,31 +182,43 @@ main .content {
 
 /* SLIDER CARDS */
 .slider-container {
-    width: 80%;
+    width: 80vw;
+    height: auto;
     max-width: 1160px;
     margin-right: auto;
     margin-left: auto;
-    overflow: hidden;
     position: relative;
+    overflow: hidden;
 }
 
-.slider-list {
-    width: 200%;
+.slider-title {
+    font-size: 30px;
+    font-weight: 500;
+    margin-bottom: 40px;
+    margin-left: 20px;
+    border-bottom: 2px solid var(--gray-light-color);
+    text-transform: capitalize;
+    text-align: left;
 }
 
 .cards-wrapper {
+    padding: 0 2vw;
     display: flex;
-    gap: 2%;
-    transition: transform 0.5s ease-in-out;
+    scroll-behavior: smooth;
+    transition: transform 0.7s ease-in-out;
+}
+
+.cards-wrapper::-webkit-scrollbar {
+    display: none;
 }
 
 .product-card {
-    width: calc((85vw - 120px) / 4);
-    max-width: 262px;
+    flex: 0 0 auto;
+    width: 250px;
+    height: 400px;
+    margin-right: 40px;
     border: 1px solid var(--gray-light-color);
-    margin-bottom: 20px;
     text-align: center;
-    position: relative;
     overflow: hidden;
 }
 
@@ -230,14 +243,26 @@ main .content {
     transform: scale(1.1);
 }
 
-/* Estilos para los botones de navegación */
+.text-container h3{
+    color: var(--dark-color);
+    font-size: 22px;
+    font-weight: 400;
+    margin: 10px 5px;
+    height: auto;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    cursor: pointer;
+    text-transform: capitalize;
+}
+
+/* SLIDER CARDS NAV */
 .navigation {
+    display: flex;
+    justify-content: space-between;
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
     width: 100%;
-    display: flex;
-    justify-content: space-between;
     padding: 0 10px;
 }
 
@@ -245,14 +270,17 @@ main .content {
 .next-btn {
     background: none;
     border: none;
-    font-size: 24px;
+    font-size: 28px;
     cursor: pointer;
     color: var(--dark-color);
+    opacity: 0.5;
+    z-index: 9;
 }
 
 .prev-btn:hover,
 .next-btn:hover {
     color: var(--primary-color);
+    opacity: 1;
 }
 
 @media screen and (max-width: 768px) {
