@@ -36,28 +36,37 @@ window.onload = function() {
 
 // PRODUCT SLIDER
 document.addEventListener('DOMContentLoaded', function () {
-    const productContainers = document.querySelector('.cards-wrapper');
-    const prevBtn = document.getElementById('prevBtn');
-    const nextBtn = document.getElementById('nextBtn');
+    // Función para inicializar un slider
+    function initializeSlider(sliderContainer) {
+        const productContainers = sliderContainer.querySelector('.cards-wrapper');
+        const prevBtn = sliderContainer.querySelector('.prev-btn');
+        const nextBtn = sliderContainer.querySelector('.next-btn');
 
-    const cardWidth = 250 + 40;
-    const cardsPerPage = Math.floor(productContainers.offsetWidth / cardWidth);
-    const totalCards = document.querySelectorAll('.product-card').length;
+        const cardWidth = 250 + 40;
+        const cardsPerPage = Math.floor(productContainers.offsetWidth / cardWidth);
+        const totalCards = sliderContainer.querySelectorAll('.product-card').length;
 
-    let currentIndex = 0;
+        let currentIndex = 0;
 
-    prevBtn.addEventListener('click', function () {
-        currentIndex = Math.max(0, currentIndex - cardsPerPage);
-        moveCards();
-    });
+        prevBtn.addEventListener('click', function () {
+            currentIndex = Math.max(0, currentIndex - cardsPerPage);
+            moveCards();
+        });
 
-    nextBtn.addEventListener('click', function () {
-        currentIndex = Math.min(currentIndex + cardsPerPage, totalCards - cardsPerPage);
-        moveCards();
-    });
+        nextBtn.addEventListener('click', function () {
+            currentIndex = Math.min(currentIndex + cardsPerPage, totalCards - cardsPerPage);
+            moveCards();
+        });
 
-    function moveCards() {
-        const translateXValue = -currentIndex * cardWidth + 'px';
-        productContainers.style.transform = 'translateX(' + translateXValue + ')';
+        function moveCards() {
+            const translateXValue = -currentIndex * cardWidth + 'px';
+            productContainers.style.transform = 'translateX(' + translateXValue + ')';
+        }
     }
+
+    // Inicializar todos los sliders presentes en la página
+    const sliderContainers = document.querySelectorAll('.slider-container');
+    sliderContainers.forEach(function (sliderContainer) {
+        initializeSlider(sliderContainer);
+    });
 });

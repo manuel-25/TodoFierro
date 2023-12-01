@@ -3,14 +3,15 @@ import { productService } from "../Service/index.js"
 class ProductController {
   async getProducts(req, res, next) {
     try {
-      const limit = !isNaN(parseInt(req.query.limit)) ? parseInt(req.query.limit) : 6;
+      const limit = !isNaN(parseInt(req.query.limit)) ? parseInt(req.query.limit) : 8;
       const page = !isNaN(parseInt(req.query.page)) ? parseInt(req.query.page) : 1;
-      const searchTerm = req.query.name || '';
-      const sortBy = req.query.sortBy || 'name'; // Campo por el cual ordenar
-      const sortOrder = req.query.sortOrder === 'desc' ? -1 : 1; // Orden ascendente o descendente
+      const searchTerm = req.query.name ?? '';
+      const sortBy = req.query.sortBy ?? 'name';
+      console.log('req.query:', req.query)
+      const sortOrder = req.query.sortOrder === 'desc' ? -1 : 1;
   
       const keywords = searchTerm.trim().split(/\s+/);
-      let query = {};
+      let query = { status: true };
   
       if (keywords.length > 0) {
         query.$or = keywords.map(keyword => ({
@@ -27,7 +28,15 @@ class ProductController {
         query.category = new RegExp(req.query.category, 'i');
       }
   
-      // Agrega más campos según tus necesidades
+      // Agregar opción para productos destacados (isFeatured: true)
+      if (req.query.isFeatured) {
+        query.isFeatured = true;
+      }
+  
+      // Agregar opción para los últimos productos (8 productos más recientes)
+      if (req.query.latest) {
+        query.date = { $exists: true };
+      }
   
       const results = await productService.paginate(query, { limit, page, sort: { [sortBy]: sortOrder }, lean: true });
   
@@ -38,6 +47,9 @@ class ProductController {
         });
       }
   
+      // Ordenar los resultados después de la búsqueda
+      results.docs.sort((a, b) => (a[sortBy] > b[sortBy]) ? sortOrder : -sortOrder);
+    
       return res.status(200).send({
         status: 200,
         response: results
@@ -46,6 +58,8 @@ class ProductController {
       next(error);
     }
   }
+  
+  
   
 
   async getFeatured(req, res, next) {

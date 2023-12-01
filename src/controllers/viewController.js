@@ -3,20 +3,27 @@
 class viewController {
     async renderIndex(req, res, next) {
         try {
-            let data
+            let featuredData
+            let latestData
 
-            const url = new URL(`http://localhost:3000/api/products?limit=${8}&isFeatured=${true}`) 
-            const response = await fetch(url)
+            const featured = await fetch(`http://localhost:3000/api/products?limit=${8}&isFeatured=${true}`)
+            const latest = await fetch(`http://localhost:3000/api/products?limit=${8}&latest=true&sortBy=date`)
 
-            if (response.status === 200) {
-                data = await response.json()
+            if (featured.status === 200) {
+                featuredData = await featured.json()
             }
 
+            if (latest.status === 200) {
+                latestData = await latest.json()
+            }
+
+            //console.log('featuredData', featuredData.response.docs)
             return res.render('index', {
                 title: 'Home',
                 style: 'index.css',
                 script: 'index.js',
-                data: data?.response
+                featuredData: featuredData?.response,
+                latestData: latestData?.response
             })
         } catch (err) {
             next(err)
@@ -29,14 +36,15 @@ class viewController {
             const page = parseInt(req.query.page) || null
             const name = req.query.name || ''
             const category = req.query.category || ''
+            const latest = req.query.latest || ''
+            const isFeatured = req.query.isFeatured || ''
+            const sortBy = req.query.sortBy || ''
+            const sortOrder = req.query.sortOrder || 'desc'
+
+ 
             let data = null
         
-            //Build url
-            const url = new URL('http://localhost:3000/api/products')
-            url.searchParams.append('limit', limit)
-            url.searchParams.append('page', page)
-            url.searchParams.append('name', name)
-            const response = await fetch(url)
+            const response = await fetch(`http://localhost:3000/api/products?limit=${limit}&page=${page}&name=${name}&latest=${latest}&isFeatured=${isFeatured}&sortBy=${sortBy}&sortOrder=${sortOrder}`)
 
             if (response.status === 200) {
                 data = await response.json()

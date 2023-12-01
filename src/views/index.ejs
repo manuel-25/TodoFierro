@@ -57,8 +57,8 @@
         <div class="slider-container">
                 <h2 class="slider-title">Destacados</h2>
                 <div class="cards-wrapper">
-                    <% if(data?.docs.length > 0) { %>
-                        <% data.docs.forEach(product => { %>
+                    <% if(featuredData?.docs.length > 0) { %>
+                        <% featuredData.docs.forEach(product => { %>
                             <div class="product-card">
                                 <a href="/detalle/<%= product.id %>">
                                     <div class="image-container">
@@ -84,8 +84,8 @@
         <div class="slider-container">
             <h2 class="slider-title">Novedades</h2>
             <div class="cards-wrapper">
-                <% if(data?.docs.length > 0) { %>
-                    <% data.docs.forEach(product => { %>
+                <% if(latestData?.docs.length > 0) { %>
+                    <% latestData.docs.forEach(product => { %>
                         <div class="product-card">
                             <a href="/detalle/<%= product.id %>">
                                 <div class="image-container">
