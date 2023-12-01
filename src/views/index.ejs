@@ -53,6 +53,7 @@
         </div>
 
         <!-- SLIDER CARDS -->
+        <!-- DESTACADOS -->
         <div class="slider-container">
                 <h2 class="slider-title">Destacados</h2>
                 <div class="cards-wrapper">
@@ -78,5 +79,32 @@
                 <button class="next-btn" id="nextBtn"><i class="fas fa-chevron-right"></i></button>
             </div>
         </div>
+
+        <!-- Novedades -->
+        <div class="slider-container">
+            <h2 class="slider-title">Novedades</h2>
+            <div class="cards-wrapper">
+                <% if(data?.docs.length > 0) { %>
+                    <% data.docs.forEach(product => { %>
+                        <div class="product-card">
+                            <a href="/detalle/<%= product.id %>">
+                                <div class="image-container">
+                                    <img src="<%= product.thumbnails[0] %>" alt="Imagen del Producto">
+                                </div>
+                            </a>
+                            <div class="text-container">
+                                <a href="/detalle/<%= product.id %>">
+                                    <h3><%= product.name %></h3>
+                                </a>
+                            </div>
+                        </div>
+                    <% }) %>
+                <% } else { }%>
+            </div>
+        <div class="navigation">
+            <button class="prev-btn" id="prevBtn"><i class="fas fa-chevron-left"></i></button>
+            <button class="next-btn" id="nextBtn"><i class="fas fa-chevron-right"></i></button>
+        </div>
+    </div>
     </div>
 </main>

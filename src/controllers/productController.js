@@ -1,42 +1,59 @@
 import { productService } from "../Service/index.js"
 
 class ProductController {
-    async getProducts(req, res, next) {
-      try {
-        const limit = !isNaN(parseInt(req.query.limit)) ? parseInt(req.query.limit) : 6
-        const page = !isNaN(parseInt(req.query.page)) ? parseInt(req.query.page) : 1
-        const searchTerm = req.query.name || ''
-    
-        // Modifica para dividir en palabras clave correctamente
-        const keywords = searchTerm.trim().split(/\s+/)
-        let query = {}
-    
-        if (keywords.length > 0) {
-          // Construye consulta con filtros de título y categoria si hay palabras clave
-          query.$or = keywords.map(keyword => ({
-            $or: [
-              { name: new RegExp(keyword, 'i') },
-              { category: new RegExp(keyword, 'i') },
-              { material: new RegExp(keyword, 'i') }
-            ]
-          }))
-        }
-    
-        const results = await productService.paginate(query, { limit, page, lean: true })
-        if (!results || results?.error) {
-          return res.status(404).send({
-            status: 404,
-            response: results.error || 'Products pagination error!'
-          })
-        }
-    
-        return res.status(200).send({
-          status: 200,
-          response: results
-        })
-      } catch (error) {
-        next(error)
+  async getProducts(req, res, next) {
+    try {
+      const limit = !isNaN(parseInt(req.query.limit)) ? parseInt(req.query.limit) : 6;
+      const page = !isNaN(parseInt(req.query.page)) ? parseInt(req.query.page) : 1;
+      const searchTerm = req.query.name || '';
+      const sortBy = req.query.sortBy || 'name'; // Campo por el cual ordenar
+      const sortOrder = req.query.sortOrder === 'desc' ? -1 : 1; // Orden ascendente o descendente
+  
+      const keywords = searchTerm.trim().split(/\s+/);
+      let query = {};
+  
+      if (keywords.length > 0) {
+        query.$or = keywords.map(keyword => ({
+          $or: [
+            { name: new RegExp(keyword, 'i') },
+            { category: new RegExp(keyword, 'i') },
+            { material: new RegExp(keyword, 'i') }
+          ]
+        }));
       }
+  
+      // Agrega campos adicionales para filtrar, si se proporcionan
+      if (req.query.category) {
+        query.category = new RegExp(req.query.category, 'i');
+      }
+  
+      // Agrega más campos según tus necesidades
+  
+      const results = await productService.paginate(query, { limit, page, sort: { [sortBy]: sortOrder }, lean: true });
+  
+      if (!results || results?.error) {
+        return res.status(404).send({
+          status: 404,
+          response: results.error || 'Products pagination error!'
+        });
+      }
+  
+      return res.status(200).send({
+        status: 200,
+        response: results
+      });
+    } catch (error) {
+      next(error);
+    }
+  }
+  
+
+  async getFeatured(req, res, next) {
+    try {
+      
+    } catch (err) {
+      next(err)
+    }
   }
 
   async getProduct(req, res, next) {
@@ -54,8 +71,8 @@ class ProductController {
         status: 200,
         response: product
       })
-    } catch (error) {
-      next(error)
+    } catch (err) {
+      next(err)
     }
   }
 
