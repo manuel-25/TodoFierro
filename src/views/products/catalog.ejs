@@ -1,0 +1,53 @@
+<div class="breadcrumb-wrapper">
+    <h1><%= category ? category : 'Productos' %></h1>
+    <h2><%= data.totalDocs %> resultados</h2>
+</div>
+<div class="container">
+    <div class="catalog-container">
+        <div class="product-list">
+            <%if(data?.docs.length > 0) { %>
+                <% data.docs.forEach(product => { %>
+                    <div class="product-card">
+                        <a href="/detalle/<%= product.id %>">
+                            <div class="image-container">
+                                <img src="<%= product.thumbnails[0] %>" alt="Imagen del Producto">
+                            </div>
+                        </a>
+                        <div class="text-container">
+                            <a href="/detalle/<%= product.id %>">
+                                <h3><%= product.name %></h3>
+                            </a>
+                        </div>
+                    </div>
+                <% }) %>
+                <div class="pagination">
+                    <% if (data.hasNextPage) { %>
+                        <a href="?limit=<%= data.limit * (data.page + 1) %>">Ver más</a>
+                    <% } %>
+                </div>
+            <% } else { %>
+                <div class="no-products-message">
+                    No hay productos por el momento.
+                </div>
+            <% } %>
+        </div>
+        <div class="widget-container">
+            <h4>Filtrar Por</h4>
+            <div class="search">
+                <i class="fas fa-search"></i>
+                <form action="#" id="searchForm">
+                    <input type="search" placeholder="Buscar Productos" id="searchInput">
+                </form>
+            </div>
+            <ul class="widget-list">
+                <li><a href="/catalogo?category=Todos%20los%20Productos">Todos los Productos</a></li>
+                <li><a href="/catalogo?name=sillones&category=Sillones">Sillones</a></li>
+                <li><a href="/catalogo?name=mesas&category=Mesas">Mesas</a></li>
+                <li><a href="/catalogo?name=espejos&category=Espejos">Espejos</a></li>
+                <li><a href="/catalogo?name=estantes&category=Estantes">Estantes</a></li>
+                <li><a href="/catalogo?name=hierro&category=Hierro">Hierro</a></li>
+                <li><a href="/catalogo?name=Otros&category=Otros">Otros</a></li>
+            </ul>
+        </div>
+    </div>
+</div>

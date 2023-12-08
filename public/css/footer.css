@@ -1,0 +1,88 @@
+@import "root.css";
+
+.footer-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 30vh;
+    background-color: var(--dark-color);
+    margin-top: 30px;
+    padding: 20px 40px;
+}
+
+.footer-container p {
+    margin: 0;
+    color: var(--white-color);
+    text-align: center;
+}
+
+.footer-container a {
+    color: var(--white-color);
+    text-decoration: none;
+    font-weight: 400;
+}
+
+.left .logo {
+    font-size: 18px;
+    color: var(--white-color);
+}
+
+.right .socials {
+    display: flex;
+    justify-content: center;
+}
+
+.right .socials ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+}
+
+.right .socials li {
+    margin-right: 10px;
+}
+
+.right .socials a {
+    color: var(--gray-color);
+    font-size: 24px;
+}
+
+.right .contact-info {
+    text-align: left;
+    color: var(--white-color);
+    margin-top: 10px;
+}
+
+.right .contact-info p {
+    margin: 5px 0;
+}
+
+.right .contact-info p i {
+    color: var(--gray-color);
+}
+
+.right .contact-info a {
+    color: var(--white-color);
+    text-decoration: none;
+}
+
+.notification {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    padding: 10px;
+    background-color: var(--dark-color);
+    color: var(--white-color);
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    z-index: 999;
+}
+
+/* Estilos para dispositivos móviles */
+@media (max-width: 768px) {
+    .footer-container {
+        padding: 20px;
+    }
+}

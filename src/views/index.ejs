@@ -1,1 +1,110 @@
-<h1> Bienvenido a TODO FIERRO </h1>
+<main>
+    <div class="content">
+        <!-- Banner -->
+        <div class="slider">
+            <div class="slides">
+                <input type="radio" name="radio-btn" id="radio1">
+                <input type="radio" name="radio-btn" id="radio2">
+                <input type="radio" name="radio-btn" id="radio3">
+
+                <!-- Banner images -->
+                <div class="slide first">
+                    <img src="/public/images/mesas02.jpg" alt="Banner">
+                    <div class="span-container">
+                        <span class="slide-text">COLECCION 2023</span>
+                    </div>
+                </div>
+                <div class="slide">
+                    <img src="/public/images/mesasratones.jpg" alt="Banner">
+                    <div class="span-container">
+                        <span class="slide-text">ENVIOS A TODO EL PAIS</span>
+                    </div>
+                </div>
+                <div class="slide">
+                    <img src="/public/images/mesasratones01.jpg" alt="Banner">
+                    <div class="span-container">
+                        <span class="slide-text">PEDIDOS A ENCARGO</span>
+                    </div>
+                </div>
+
+                <!-- Manual navigation -->
+                <div class="navigation-manual">
+                    <label for="radio1" class="manual-btn"></label>
+                    <label for="radio2" class="manual-btn"></label>
+                    <label for="radio3" class="manual-btn"></label>
+                </div>
+            </div>
+        </div>
+
+        <!-- CATEGORIES -->
+        <div class="category-rows">
+            <div class="block-overlay">
+                <img src="/public/images/mesas.jpg" alt="Mesas">
+                <a href="/catalogo?name=mesas&category=Mesas"><h4>Mesas</h4></a>
+            </div>
+            <div class="block-overlay">
+                <img src="/public/images/espejo.jpg" alt="Espejos">
+                <a href="/catalogo?name=espejos&category=Espejos"><h4>Espejos</h4></a>
+            </div>
+            <div class="block-overlay">
+                <img src="/public/images/estantes01.jpg" alt="Estantes">
+                <a href="/catalogo?name=estantes&category=Estantes"><h4>Estantes</h4></a>
+            </div>
+        </div>
+
+        <!-- SLIDER CARDS -->
+        <!-- DESTACADOS -->
+        <div class="slider-container">
+                <h2 class="slider-title">Destacados</h2>
+                <div class="cards-wrapper">
+                    <% if(featuredData?.docs.length > 0) { %>
+                        <% featuredData.docs.forEach(product => { %>
+                            <div class="product-card">
+                                <a href="/detalle/<%= product.id %>">
+                                    <div class="image-container">
+                                        <img src="<%= product.thumbnails[0] %>" alt="Imagen del Producto">
+                                    </div>
+                                </a>
+                                <div class="text-container">
+                                    <a href="/detalle/<%= product.id %>">
+                                        <h3><%= product.name %></h3>
+                                    </a>
+                                </div>
+                            </div>
+                        <% }) %>
+                    <% } else { }%>
+                </div>
+            <div class="navigation">
+                <button class="prev-btn" id="prevBtn"><i class="fas fa-chevron-left"></i></button>
+                <button class="next-btn" id="nextBtn"><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </div>
+
+        <!-- Novedades -->
+        <div class="slider-container">
+            <h2 class="slider-title">Novedades</h2>
+            <div class="cards-wrapper">
+                <% if(latestData?.docs.length > 0) { %>
+                    <% latestData.docs.forEach(product => { %>
+                        <div class="product-card">
+                            <a href="/detalle/<%= product.id %>">
+                                <div class="image-container">
+                                    <img src="<%= product.thumbnails[0] %>" alt="Imagen del Producto">
+                                </div>
+                            </a>
+                            <div class="text-container">
+                                <a href="/detalle/<%= product.id %>">
+                                    <h3><%= product.name %></h3>
+                                </a>
+                            </div>
+                        </div>
+                    <% }) %>
+                <% } else { }%>
+            </div>
+        <div class="navigation">
+            <button class="prev-btn" id="prevBtn"><i class="fas fa-chevron-left"></i></button>
+            <button class="next-btn" id="nextBtn"><i class="fas fa-chevron-right"></i></button>
+        </div>
+    </div>
+    </div>
+</main>

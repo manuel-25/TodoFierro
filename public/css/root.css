@@ -1,0 +1,13 @@
+:root {
+    --background-color: #f5faff;      /* Fondo principal - un tono suave para mayor legibilidad */
+    --dark-color: #252525;            /* Color de texto principal - oscuro para contraste */
+    /*--primary-color: #FF5733;     
+    /*--primary-color-hover: #FF3D1E;*/
+    --primary-color: #FF6C37;
+    --primary-color-hover: #FF5522;
+    --secondary-color: #6A5ACD;       /* Color secundario - una opción de contraste elegante */
+    --gray-color: #909090;            /* Color gris - para detalles y sombras sutiles */
+    --gray-light-color: #f5f5f5;
+    --white-color: #FFFFFF;           /* Color de texto claro - para resaltar y botones */
+    --pink-color: #FFC0CB;            /* Color rosa - para detalles adicionales si es necesario */
+}

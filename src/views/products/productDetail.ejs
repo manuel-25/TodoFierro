@@ -1,0 +1,66 @@
+<div class="container">
+    <div class="page-nav">
+        <nav class="breadcrumbs">
+            <ol class="breadcrumbs-list">
+                <li class="breadcrumbs-list__item">
+                    <a class="breadcrumbs-list__link" href="/">TODOFIERRO</a>
+                    <span><i class="fas fa-chevron-right"></i></span>
+                </li>
+                <li class="breadcrumbs-list__item">
+                    <a class="breadcrumbs-list__link" href="javascript:history.back()">Catalogo</a>
+                    <span><i class="fas fa-chevron-right"></i></span>
+                </li>
+                <li class="breadcrumbs-list__item">
+                    <a class="breadcrumbs-list__link" href="/detalle/<%= data.id %>"><%= data.name  %></a>
+                </li>
+            </ol>
+        </nav>
+    </div>
+    <div class="product-detail">
+        <div class="gallery-carrousel">
+            <div class="sticky-container">
+                <div class="main-image">
+                    <img id="main-thumbnail" src="<%= data.thumbnails[0]  %>" alt="Imagen del Producto">
+                </div>
+                <div class="thumbnails">
+                    <% data.thumbnails.forEach(image => { %>
+                        <img src="<%= image  %>" alt="Thumbnail del Producto">
+                    <% }) %>
+                </div>
+            </div>
+        </div>
+        <div class="detail-column">
+            <div class="title-row">
+                <h2> <%= data.name  %> </h2>
+            </div>
+            <div class="input-row">
+                <div class="form-group">
+                    <label for="colorSelect">Color:</label>
+                    <select id="colorSelect" name="color">
+                        <% data.color.forEach(color => { %>
+                            <option value="<%= color %>"><%= color %></option>
+                        <% }) %>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="materialSelect">Material:</label>
+                    <select id="materialSelect" name="material">
+                        <% data.material.forEach(material => { %>
+                            <option value="<%= material %>"><%= material %></option>
+                        <% }) %>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="quantityInput">Cantidad:</label>
+                    <input type="number" id="quantityInput" name="quantity" min="1" value="1">
+                </div>
+                <div class="form-group">
+                    <button type="submit">Comprar</button>
+                </div>
+            </div>
+            <div class="description-row">
+                <p><%= data.description  %></p>
+            </div>
+        </div>
+    </div>
+</div>
