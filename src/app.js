@@ -8,7 +8,7 @@ import config from './config/config.js'
 import errorHandler from './middlewares/error_Handler.js'
 
 const app = express()
-const PORT = process.env.PORT || 8080
+const PORT = process.env.PORT || 8069
 
 app.listen(PORT, () => {
     console.log('El servidor esta corriendo en el puerto: ', PORT)
