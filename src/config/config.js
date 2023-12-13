@@ -7,6 +7,7 @@ dotenv.config({
 
 const config = {
     MONGO_URL: process.env.LINK_MONGO || '',
+    APP_URL: 'http://localhost:8069',
     connectDB: async () => MongoSingleton.getInstance()
 }
 

@@ -1,4 +1,4 @@
-
+import config from "../config/config.js"
 
 class viewController {
     async renderIndex(req, res, next) {
@@ -6,8 +6,8 @@ class viewController {
             let featuredData
             let latestData
 
-            const featured = await fetch(`http://localhost:3000/api/products?limit=${8}&isFeatured=${true}`)
-            const latest = await fetch(`http://localhost:3000/api/products?limit=${8}&latest=true&sortBy=date`)
+            const featured = await fetch(`${config.APP_URL}/api/products?limit=${8}&isFeatured=${true}`)
+            const latest = await fetch(`${config.APP_URL}/api/products?limit=${8}&latest=true&sortBy=date`)
 
             if (featured.status === 200) {
                 featuredData = await featured.json()
@@ -44,7 +44,7 @@ class viewController {
  
             let data = null
         
-            const response = await fetch(`http://localhost:3000/api/products?limit=${limit}&page=${page}&name=${name}&latest=${latest}&isFeatured=${isFeatured}&sortBy=${sortBy}&sortOrder=${sortOrder}`)
+            const response = await fetch(`${config.APP_URL}/api/products?limit=${limit}&page=${page}&name=${name}&latest=${latest}&isFeatured=${isFeatured}&sortBy=${sortBy}&sortOrder=${sortOrder}`)
 
             if (response.status === 200) {
                 data = await response.json()
@@ -67,7 +67,7 @@ class viewController {
             const pid = req.params.pid
             let data
 
-            const response = await fetch(`http://localhost:3000/api/products/${pid}`)
+            const response = await fetch(`${config.APP_URL}/api/products/${pid}`)
             if (response.status === 200) {
                 data = await response.json()
             }

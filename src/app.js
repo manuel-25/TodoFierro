@@ -11,7 +11,7 @@ const app = express()
 const PORT = process.env.PORT || 8069
 
 app.listen(PORT, () => {
-    console.log('El servidor esta corriendo en el puerto: ', PORT)
+    console.log(`Servidor corriendo: ${config.APP_URL}`)
 })
 
 //Template engine
