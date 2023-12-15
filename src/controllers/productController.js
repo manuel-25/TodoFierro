@@ -3,61 +3,76 @@ import { productService } from "../Service/index.js"
 class ProductController {
   async getProducts(req, res, next) {
     try {
-      const limit = !isNaN(parseInt(req.query.limit)) ? parseInt(req.query.limit) : 8;
-      const page = !isNaN(parseInt(req.query.page)) ? parseInt(req.query.page) : 1;
-      const searchTerm = req.query.name ?? '';
-      const sortBy = req.query.sortBy ?? 'name';
-      console.log('req.query:', req.query)
-      const sortOrder = req.query.sortOrder === 'desc' ? -1 : 1;
-  
-      const keywords = searchTerm.trim().split(/\s+/);
-      let query = { status: true };
-  
-      if (keywords.length > 0) {
-        query.$or = keywords.map(keyword => ({
-          $or: [
-            { name: new RegExp(keyword, 'i') },
-            { category: new RegExp(keyword, 'i') },
-            { material: new RegExp(keyword, 'i') }
-          ]
-        }));
-      }
-  
-      // Agrega campos adicionales para filtrar, si se proporcionan
-      if (req.query.category) {
-        query.category = new RegExp(req.query.category, 'i');
-      }
-  
-      // Agregar opción para productos destacados (isFeatured: true)
-      if (req.query.isFeatured) {
-        query.isFeatured = true;
-      }
-  
-      // Agregar opción para los últimos productos (8 productos más recientes)
-      if (req.query.latest) {
-        query.date = { $exists: true };
-      }
-  
-      const results = await productService.paginate(query, { limit, page, sort: { [sortBy]: sortOrder }, lean: true });
-  
-      if (!results || results?.error) {
-        return res.status(404).send({
-          status: 404,
-          response: results.error || 'Products pagination error!'
+        const limit = !isNaN(parseInt(req.query.limit)) ? parseInt(req.query.limit) : 8;
+        const page = !isNaN(parseInt(req.query.page)) ? parseInt(req.query.page) : 1;
+        const searchTerm = req.query.name ?? '';
+        const validSortFields = ['name', 'price', 'date']
+        const sortBy = validSortFields.includes(req.query.sortBy) ? req.query.sortBy : '';
+        const sortOrder = req.query.sortOrder === 'desc' ? -1 : 1;
+
+        const keywords = searchTerm.trim().split(/\s+/);
+        let query = { status: true };
+
+        if (keywords.length > 0) {
+            query.$or = keywords.map(keyword => ({
+                $or: [
+                    { name: new RegExp(keyword, 'i') },
+                    { category: new RegExp(keyword, 'i') },
+                    { material: new RegExp(keyword, 'i') }
+                ]
+            }));
+        }
+
+        if (req.query.category) {
+            query.category = new RegExp(req.query.category, 'i');
+        }
+
+        if (req.query.isFeatured) {
+            query.isFeatured = true;
+        }
+
+        // Agregar opción para los últimos productos (8 productos más recientes)
+        if (req.query.latest) {
+            query.date = { $exists: true };
+
+            // Solo aplicar ordenación si el sortBy es 'date'
+            if (sortBy === 'date') {
+                const results = await productService.paginate(query, { limit, page, sort: { [sortBy]: sortOrder } });
+
+                if (!results || results?.error) {
+                    return res.status(404).send({
+                        status: 404,
+                        response: results.error || 'Products pagination error!'
+                    });
+                }
+
+                return res.status(200).send({
+                    status: 200,
+                    response: results
+                });
+            }
+        }
+
+        // Si no es el caso de 'latest', simplemente consulta sin ordenación
+        const results = await productService.paginate(query, { limit, page });
+
+        if (!results || results?.error) {
+            return res.status(404).send({
+                status: 404,
+                response: results.error || 'Products pagination error!'
+            });
+        }
+
+        return res.status(200).send({
+            status: 200,
+            response: results
         });
-      }
-  
-      // Ordenar los resultados después de la búsqueda
-      results.docs.sort((a, b) => (a[sortBy] > b[sortBy]) ? sortOrder : -sortOrder);
-    
-      return res.status(200).send({
-        status: 200,
-        response: results
-      });
+
     } catch (error) {
-      next(error);
+        next(error);
     }
-  }
+}
+
   
   
   

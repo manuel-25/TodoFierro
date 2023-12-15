@@ -3,30 +3,23 @@ import config from "../config/config.js"
 class viewController {
     async renderIndex(req, res, next) {
         try {
-            let featuredData
-            let latestData
-
-            const featured = await fetch(`${config.APP_URL}/api/products?limit=${8}&isFeatured=${true}`)
-            const latest = await fetch(`${config.APP_URL}/api/products?limit=${8}&latest=true&sortBy=date`)
-
-            if (featured.status === 200) {
-                featuredData = await featured.json()
-            }
-
-            if (latest.status === 200) {
-                latestData = await latest.json()
-            }
-
-            //console.log('featuredData', featuredData.response.docs)
+            const [featuredResponse, latestResponse] = await Promise.all([
+                fetch(`${config.APP_URL}/api/products?limit=${8}&isFeatured=${true}`),
+                fetch(`${config.APP_URL}/api/products?limit=${8}&latest=true&sortBy=date`)
+            ]);
+    
+            const featuredData = (featuredResponse.status === 200) ? await featuredResponse.json() : null;
+            const latestData = (latestResponse.status === 200) ? await latestResponse.json() : null;
+    
             return res.render('index', {
                 title: 'Home',
                 style: 'index.css',
                 script: 'index.js',
                 featuredData: featuredData?.response,
                 latestData: latestData?.response
-            })
+            });
         } catch (err) {
-            next(err)
+            next(err);
         }
     }
 
