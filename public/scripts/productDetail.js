@@ -13,6 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
     console.log('Product ID:', productID);
 
     buyButton.addEventListener('click', () => {
+        console.log('click')
         const selectedColor = document.getElementById('colorSelect').value;
         const selectedMaterial = document.getElementById('materialSelect').value;
         const quantity = document.getElementById('quantityInput').value;
@@ -28,6 +29,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Redirige al usuario a la URL de WhatsApp
         window.location.href = whatsappURL;
+
+        // Si falla, redirige a la versión web de WhatsApp
+        setTimeout(() => {
+        window.location.href = 'https://web.whatsapp.com/send?phone=5491158338131&text=' + encodedMessage;
+        }, 500);
     });
 
     // Thumbnails selector
