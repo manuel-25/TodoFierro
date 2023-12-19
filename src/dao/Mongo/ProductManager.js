@@ -6,7 +6,7 @@ class ProductManagerDao {
     }
 
     async getAll() {
-        return await ProductModel.find({}).explain('executionStats')
+        return await ProductModel.find({})
     }
 
     async paginate(query, config) {

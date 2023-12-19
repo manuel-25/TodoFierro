@@ -5,6 +5,8 @@ dotenv.config({
     path: `./.env.development`
 })
 
+console.log('MONGO_URL:', process.env.LINK_MONGO)
+
 const config = {
     MONGO_URL: process.env.LINK_MONGO || '',
     APP_URL: 'http://localhost:8069',
