@@ -8,13 +8,13 @@
             <%if(data?.docs.length > 0) { %>
                 <% data.docs.forEach(product => { %>
                     <div class="product-card">
-                        <a href="/detalle/<%= product.id %>">
+                        <a href="/detalle/<%= product._id %>">
                             <div class="image-container">
                                 <img src="<%= product.thumbnails[0] %>" alt="Imagen del Producto">
                             </div>
                         </a>
                         <div class="text-container">
-                            <a href="/detalle/<%= product.id %>">
+                            <a href="/detalle/<%= product._id %>">
                                 <h3><%= product.name %></h3>
                             </a>
                         </div>
