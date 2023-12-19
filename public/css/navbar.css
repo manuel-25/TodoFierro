@@ -1,5 +1,9 @@
 @import "root.css";
 
+.hide-icon {
+    display: none;
+}
+
 * {
     margin: 0;
     padding: 0;
