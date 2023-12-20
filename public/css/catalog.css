@@ -182,16 +182,16 @@
     }
 }
 
-@media only screen and (max-width: 767px) {
+@media only screen and (max-width: 528px) {
     .product-card {
-        width: 50%;
+        width: 80%;
         height: auto;
     }
 
     .image-container {
         width: 100%;
         height: auto;
-        max-height: 40vh;
+        max-height: 50vh;
         overflow: hidden;
     }
 
