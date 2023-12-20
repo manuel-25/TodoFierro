@@ -161,7 +161,7 @@ main .content {
     transform: scale(1.01);
 }
 
-.block-overlay a {
+.block-overlay h4 {
     display: flex;
     align-items: center;
     justify-content: center;
