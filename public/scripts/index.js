@@ -4,7 +4,7 @@ window.onload = function() {
     const labels = document.querySelectorAll('.manual-btn')
     radios[0].checked = true
 
-    let intervalId = setInterval(changeRadio, 6000)
+    let intervalId = setInterval(changeRadio, 60000)
 
     function changeRadio() {
         for (let i = 0; i < radios.length; i++) {
@@ -26,7 +26,7 @@ window.onload = function() {
     radios.forEach(function(radio, index) {
         radio.addEventListener('click', function() {
             clearInterval(intervalId)
-            intervalId = setInterval(changeRadio, 6000)
+            intervalId = setInterval(changeRadio, 60000)
             labels.forEach((label, i) => {
                 label.style.background = i === index ? 'var(--white-color)' : 'transparent'
             })
