@@ -223,9 +223,13 @@ input {
     .gallery-carrousel {
         width: 100vw;
     }
+
+    .thumbnails {
+        margin-left: 10px;
+    }
   
     .main-image {
-      height: 100vh;
+      height: auto;
       width: 100%;
     }
 
