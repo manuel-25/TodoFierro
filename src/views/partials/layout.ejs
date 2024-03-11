@@ -6,8 +6,17 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <%- include('../partials/libs.ejs') %>
         <title> Todo Fierro | <%= locals.title ? title : 'HOME'%> </title>
+        <meta name="google-site-verification" content="-jyZV8uukoDDPik57wMu2G8P7iXoEb1TrbnzdnxGadA" />
     </head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-EYQ6BRHDZY"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
 
+    gtag('config', 'G-EYQ6BRHDZY');
+    </script>
     <body>
         <%- include('../partials/navbar.ejs') %>
     
